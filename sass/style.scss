@@ -1,0 +1,640 @@
+@import 'compass';
+@import 'bootstrap';
+@import url(http://fonts.googleapis.com/css?family=Lato&subset=latin-ext);
+@import 'icons';
+@import 'button';
+@import 'colors';
+@import 'figure-hover';
+
+$font-family: 'Lato', sans-serif;
+//line
+$black-shadow: 0px 3px 0.8px black, 3px 0 0.8px black;
+$border: 1px solid black;  
+$box-shadow-inset: inset 50px -50px 50px black;
+$border-radius: 1%;
+
+@mixin test($color){
+	border: $color solid 1px;
+}
+@function black($opacity){
+    @return rgba(0,0,0,$opacity)
+}
+@function white($opacity){
+    @return rgba(255,255,255,$opacity)
+}
+@mixin letterpress($color, $opacity){
+    @include text-shadow($color($opacity) 0 1px 0);
+} 
+@mixin button($width, $height){
+			width: $width;
+			height: $height;
+			border: none;		
+			background-color: $button-color;
+			@include letterpress(#fff, 0.5);
+			color: $color-skin;
+			font-weight: 600;
+			text-align: center;	
+				
+}
+@mixin button-hover($trans-elem, $trans-time, $trans-opt){
+			cursor: pointer;
+			@include transition($trans-elem, $trans-time, $trans-opt);
+}
+
+@mixin parallax($bg){
+	background-image: $bg;
+	background-attachment: fixed;
+	background-position:center;
+	@include background-size(cover);
+}
+@mixin vert-centering{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+} //parent display:table; i height
+@mixin vert-cent-nontxt($half-w, $half-h){
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin: $half-w 0 0 $half-h; 
+}	//parent position: relative; height
+	//podajemy ujemnie half-width i half-height z obrazka/svg/buttona
+@mixin line{
+			h2{
+				display: inline-block;
+				padding: 0 15px;
+				position: relative;
+				text-transform:uppercase;
+	
+				&:before,
+				&:after {
+				  background: #ddd;
+				  content: "";
+				  display: block;
+				  height: 1px;
+				  position: absolute;
+				  top: 50%;
+				  width: 400%;
+					}
+				&:before {
+				  right: 100%;
+				}
+				&:after {
+				  left: 100%;
+				}
+			}
+}
+@mixin placeholder($color, $f-size){
+	::-webkit-input-placeholder {
+	   color: $color;
+	   font-size: $f-size;
+	}
+	 
+	:-moz-placeholder { /* Firefox 18- */
+	   color: $color;
+	   font-size: $f-size;
+	}
+	 
+	::-moz-placeholder {  /* Firefox 19+ */
+	   color: $color;
+	   font-size: $f-size;
+	}
+	 
+	:-ms-input-placeholder { 
+	   color: $color;
+	   font-size: $f-size; 
+	}	
+}
+@mixin dropShadow($colorShadow){
+	filter: drop-shadow(16px 16px 20px $colorShadow);
+	-webkit-filter: drop-shadow(16px 16px 20px $colorShadow);
+	-ms-filter: drop-shadow(16px 16px 20px $colorShadow);
+}
+@mixin grayscale($percentValue){
+		 -webkit-filter: grayscale(1);
+		 -webkit-filter: grayscale($percentValue);
+		 filter: grayscale($percentValue);
+		 filter: url(#greyscale);
+		 filter: gray;    
+		 filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); // Firefox 3.5+ 
+		 
+}
+//-------------------------MAIN----------------------------------
+body{
+  color: #5a5a5a;
+  font-family: $font-family;
+}
+//--------------------Images great positioning----------------
+.img {
+    position: relative;
+    float: left;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+//-------------------Images effects---------
+.imgEffectGray{
+	   @include transition(all, .3s);
+	   @include grayscale(100%);
+	   
+	   &:hover{
+	   	filter: none;
+		-webkit-filter: none;
+	   }
+}
+.imgEffectScale{
+	   @include transition(all, .2s, ease-in-out);
+	   @include dropShadow(rgba(0,0,0,0.6));
+	   
+	   &:hover{
+		@include scale(1.08, 1.08);
+	   	filter: none;
+		-webkit-filter: none;
+	   }
+}
+
+//------------------line heading--------------
+.line{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	overflow: hidden;
+	@include line;
+}
+// -------------ICONS svg-------------------
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+//-------------NAVBAR------------------
+.navbar-default{
+		background-color: #fff;
+}
+.navbar{
+	-webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+	border: none;
+	padding: 35px 0;
+
+
+	.nav{
+		padding: 25px 0;
+		
+		a{
+		position: relative;
+		letter-spacing: 1px;
+		font-weight: 400;
+		font-size: 1.35em;
+		}
+	}
+	.navbar-brand{
+		position: absolute;
+		right: 50%;
+	}
+}
+
+nav.sticky {
+  padding: 20px 0;
+}
+.nav-effect {
+	.navbar-collapse{
+		a{
+		padding: 8px 0;
+		margin: auto 8px;
+		
+			&::after {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				width: 100%;
+				height: 4px;
+				background: rgba(0,0,0,0.1);
+				content: '';
+				opacity: 0;
+				@include transition(opacity 0.3s, transform 0.3s);
+				@include transform(translateY(10px));
+			}
+			&:hover::after,
+			&:focus::after {
+				opacity: 1;
+				@include transform(translateY(0px));
+			}
+		}
+	}
+}
+
+//------------CAROUSEL-----------------
+.carousel,
+.item,
+.active {
+    height:700px;
+}
+.carousel{
+	margin-top: 155px;;
+	margin-bottom: 3px;
+	h2>small{
+		color: $light-color-txt;		
+		}
+}
+.carousel-control{
+	
+	&.right, &.left{
+	top: 0;
+	bottom: 0;
+	}
+	svg{
+		position: absolute;
+		height: 700px;
+		color: #fff;
+	}
+}
+
+.carousel-inner {
+    height: 700px;
+}
+
+.fill {
+    width: 100%;
+    height: 700px;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+//---------------download-------------
+.download{
+		background-color: $panel-color;
+	.panel-svg{
+		height: 200px;
+		position: relative;
+
+		svg{
+			@include vert-cent-nontxt(-50px, -50px);
+			color: $color-skin;
+			width: 100px;
+			height: 100px;
+			}
+}
+.col-md-6{	
+	display: table;
+	height: 200px;
+		>h2{
+			@include vert-centering;
+		}
+	}
+}
+//-------------newsletter-------------
+.newsletter{
+	background-color: $dark;
+	
+		form{
+			color: $color-skin;
+			@include placeholder($color-skin, 20px);
+			position: relative;
+			height: 120px;	
+			left: 5%;
+			padding-top: 30px;
+
+						
+			input[type="email"]{
+				height: 60px;
+				background-color: $form-placeholder;
+				border: none;
+				outline: none;	
+			}
+		.btn-7 {			
+			background: $white-color;
+			color: $color-txt;
+			border-radius: 7px;
+			box-shadow: 0 5px darken($white-color, 15);
+			padding: 25px 60px 25px 90px;
+			}
+			.btn-7b {
+			overflow: hidden;
+			}
+		
+		.btn-7b:before {
+			position: absolute;
+			left: 0;
+			width: 40%;
+			font-size: 160%;
+			line-height: 0.8;
+			color: darken($white-color, 40);
+		}
+		
+		.btn-7b.btn-activated:before {
+			-webkit-animation: scaleUp 0.5s;
+			-moz-animation: scaleUp 0.5s;
+			animation: scaleUp 0.5s;
+		}
+		
+		@-webkit-keyframes scaleUp {
+			80% {
+				opacity: 0;
+				-webkit-transform: scale(2);
+			}
+			100% {
+				opacity: 0;
+				-webkit-transform: scale(2);
+			}
+		}
+		
+		@-moz-keyframes scaleUp {
+			80% {
+				opacity: 0;
+				-moz-transform: scale(2);
+			}
+			100% {
+				opacity: 0;
+				-moz-transform: scale(2);
+			}
+		}
+		
+		@keyframes scaleUp {
+			80% {
+				opacity: 0;
+				transform: scale(2);
+			}
+			100% {
+				opacity: 0;
+				transform: scale(2);
+			}
+		}
+	}
+}
+//------------------NEWS--------------------------
+#news{
+	.img{
+	   width: 354px;
+	   height:200px;
+	   margin-bottom: 15px;
+	}
+}
+//-----------------Party--------------
+#party{	
+	.bigImgLeft{
+		 width: 100%;
+		 height: 500px;
+	}
+	.smallImgRight{
+		width: 100%;
+		height: 242.5px;
+		margin-bottom: 15px;
+	}
+}
+
+//----------------cinema/image hover effect-------
+#cinema{
+
+
+}
+figure.effect-julia {
+	background: #2f3238;
+}
+
+figure.effect-julia img {
+	max-width: none;
+	height: 400px;
+	-webkit-transition: opacity 1s, -webkit-transform 1s;
+	transition: opacity 1s, transform 1s;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+figure.effect-julia figcaption {
+	text-align: left;
+}
+
+figure.effect-julia h2 {
+	position: relative;
+	padding: 0.5em 0;
+}
+
+figure.effect-julia p {
+	display: inline-block;
+	margin: 0 0 0.25em;
+	padding: 0.4em 1em;
+	background: rgba(255,255,255,0.9);
+	color: #2f3238;
+	text-transform: none;
+	font-weight: 500;
+	font-size: 75%;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: translate3d(-360px,0,0);
+	transform: translate3d(-360px,0,0);
+}
+
+figure.effect-julia p:first-child {
+	-webkit-transition-delay: 0.15s;
+	transition-delay: 0.15s;
+}
+
+figure.effect-julia p:nth-of-type(2) {
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+figure.effect-julia p:nth-of-type(3) {
+	-webkit-transition-delay: 0.05s;
+	transition-delay: 0.05s;
+}
+
+figure.effect-julia:hover p:first-child {
+	-webkit-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+figure.effect-julia:hover p:nth-of-type(2) {
+	-webkit-transition-delay: 0.05s;
+	transition-delay: 0.05s;
+}
+
+figure.effect-julia:hover p:nth-of-type(3) {
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+figure.effect-julia:hover img {
+	opacity: 0.4;
+	-webkit-transform: scale3d(1.1,1.1,1);
+	transform: scale3d(1.1,1.1,1);
+}
+
+figure.effect-julia:hover p {
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+//----------------PARALLAX-PANEL------------
+.parallax-panel{
+	@include parallax(url(../img/stk-min2.jpg));
+	margin-top: 20px;
+	margin-bottom:30px;
+
+		.col-md-6{
+			height: 400px;
+			display:table;
+			
+			p{			
+				@include vert-centering;
+				@include letterpress(#000, 1);
+				color: $light-color-txt;
+			}
+		}
+}
+//-------------TRENDY-------------------
+#trends{
+	.img{
+	   width: 354px;
+	   height:200px;
+	   margin-bottom: 15px;
+
+	}
+}
+
+//------------FILM------------------
+.imgEffectScale{
+	   &:hover{
+		@include scale(0.98, 0.98);
+	   }
+}
+//-------------BANNER---------------
+#banner{
+	background: lighten( $dark, 30);
+	color:$color-txt;
+	
+	small{
+		color:$color-txt;
+	}
+	.col-md-8{
+		display:table;
+		height: 200px;	
+		
+		h3, small{
+			@include vert-centering;
+		}
+	}
+	.col-md-4{
+		position: relative;
+		height: 200px;
+		
+		.button-banner{
+ 			@include button(280px,100px);
+			@include border-radius(15px);
+			@include box-shadow(0px 7px 5px -3px #000);
+			@include vert-cent-nontxt(-50px, -140px);
+			outline: none;
+			font-size:1.8em;
+			font-weight:300;
+			line-height: 80px;
+				
+				&:hover{
+			 		background-color: #fff;
+			 		margin-top: -52px;
+			 		background-color: darken($button-color, 3);
+			 		@include button-hover(all,.2s,linear);	
+					text-decoration: none;
+			 		} 	
+			 	&:active{
+			 		@include box-shadow(none);
+			 		margin-top: -51px;
+			 	}
+			 }
+	}	
+}
+
+
+//------------FOOTER----------------
+footer{
+	background: $footer-color;
+	color:$color-txt;
+	
+	.col-md-3,{
+		display: table;
+		height: 250px;
+		p{
+		@include vert-centering;
+		}
+	}
+	#copy{
+		background: rgb(255,255,255);	
+		
+		p{
+			margin: 0 auto;
+		}
+	}
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+}
+@media (max-width: 768px){
+.nav-effect {
+	.navbar-collapse{
+		a{
+		padding: 8px;
+		margin: auto auto 0 0;
+		
+			&::after {
+				display: none;
+			}
+			&:hover::after,
+			&:focus::after {
+				display: none;
+			}
+		}
+	}
+}
+.navbar{
+	padding: 3px 0;
+	margin-bottom: 0;
+	&>img{
+		padding-bottom: 0;
+		}
+}
+.sticky{
+	padding: 5px 0;
+}
+}
