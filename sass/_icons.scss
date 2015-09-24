@@ -8,37 +8,9 @@
 	font-weight: normal;
 	font-style: normal;
 }
-.btn-svg {
-	border: none;
-	font-family: inherit;
-	font-size: inherit;
-	color: inherit;
-	background: none;
-	cursor: pointer;
-	display: inline-block;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: 700;
-	outline: none;
-	position: absolute;
-	top: 20%;
-	right: 30%;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-.btn-svg:after {
-	content: '';
-	position: absolute;
-	z-index: -1;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
-}
 
 /* Pseudo elements for icons */
-.btn-svg:before{
+.icon:before{
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -50,6 +22,43 @@
 	-webkit-font-smoothing: antialiased;
 }
 
-.icon-envelope:before {
-	content: "\e000";
+.icon-film:before {
+	content: "\e601";
 }
+.icon-phone:before {
+	content: "\e602";
+}
+.icon-envelop:before {
+	content: "\e600";
+}
+.icon-location:before {
+	content: "\e603";
+}
+.icon-location2:before {
+	content: "\e604";
+}
+.icon-download2:before {
+	content: "\e605";
+}
+.icon-eye:before {
+	content: "\e606";
+}
+.icon-heart:before {
+	content: "\e607";
+}
+.icon-google-plus:before {
+	content: "\e608";
+}
+.icon-facebook2:before {
+	content: "\e609";
+}
+.icon-instagram:before {
+	content: "\e60a";
+}
+.icon-twitter:before {
+	content: "\e60b";
+}
+.icon-youtube3:before {
+	content: "\e60c";
+}
+

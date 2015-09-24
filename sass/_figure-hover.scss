@@ -1,52 +1,20 @@
 section {
-	padding: 1em;
 	text-align: center;
 }
-
-.content {
-	margin: 0 auto;
-	max-width: 1200px;
-}
-
-.content > h2 {
-	clear: both;
-	margin: 0;
-	padding: 4em 1% 0;
-	color: #484B54;
-	font-weight: 800;
-	font-size: 1.5em;
-}
-
-.content > h2:first-child {
-	padding-top: 0em;
-}
-.grid {
+.row figure {
 	position: relative;
-	clear: both;
-	margin: 0 auto;
-	padding: 1em 0 1em;
-	max-width: 1000px;
-	list-style: none;
-	text-align: center;
-}
-
-/* Common style */
-.grid figure {
-	position: relative;
-	float: left;
 	overflow: hidden;
 	margin: 4px 1%;
-	min-width: 480px;
-	max-width: 480px;
-	max-height: 270px;
+	min-width: 100%;
+	//max-width: 480px;
+	max-height: 100%;
 	width: 48%;
 	height: auto;
 	background: #3085a3;
 	text-align: center;
 	cursor: pointer;
 }
-
-.grid figure img {
+.row figure img {
 	position: relative;
 	display: block;
 	min-height: 100%;
@@ -54,7 +22,7 @@ section {
 	opacity: 0.8;
 }
 
-.grid figure figcaption {
+.row figure figcaption {
 	padding: 2em;
 	color: #fff;
 	text-transform: uppercase;
@@ -63,13 +31,13 @@ section {
 	backface-visibility: hidden;
 }
 
-.grid figure figcaption::before,
-.grid figure figcaption::after {
+.row figure figcaption::before,
+.row figure figcaption::after {
 	pointer-events: none;
 }
 
-.grid figure figcaption,
-.grid figure figcaption > a {
+.row figure figcaption,
+.row figure figcaption > a {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -79,7 +47,7 @@ section {
 
 /* Anchor will cover the whole item by default */
 /* For some effects it will show as a button */
-.grid figure figcaption > a {
+.row figure figcaption > a {
 	z-index: 1000;
 	text-indent: 200%;
 	white-space: nowrap;
@@ -87,21 +55,21 @@ section {
 	opacity: 0;
 }
 
-.grid figure h2 {
+.row figure h2 {
 	word-spacing: -0.15em;
 	font-weight: 300;
 }
 
-.grid figure h2 span {
+.row figure h2 span {
 	font-weight: 800;
 }
 
-.grid figure h2,
-.grid figure p {
+.row figure h2,
+.row figure p {
 	margin: 0;
 }
 
-.grid figure p {
+.row figure p {
 	letter-spacing: 1px;
 	font-size: 68.5%;
 }
@@ -112,7 +80,7 @@ section {
 		padding: 0 10px;
 		text-align: center;
 	}
-	.grid figure {
+	.row figure {
 		display: inline-block;
 		float: none;
 		margin: 10px auto;
